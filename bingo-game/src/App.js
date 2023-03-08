@@ -2,15 +2,7 @@ import { useState } from 'react';
 import './App.css';
 
 function App() {
-  //useState
-  // const [isBingo, setIsBingo] = useState(false);//ビンゴゲーム状態の管理
-  // const [columnB, setColumnB] = useState([]);//B列管理
-  // const [columnI, setColumnI] = useState([]);//I列管理
-  // const [columnN, setColumnN] = useState([]);//N列管理
-  // const [columnG, setColumnG] = useState([]);//G列管理
-  // const [columnO, setColumnO] = useState([]);//O列管理
-  // const [bingoBall, setBingoBall] = useState("");//ビンゴボールの管理
-  // const [ballTotal, setBallTotal] = useState([]);//取り出したビンゴボールの一覧管理
+
   function generateRandomNumbers(min, max, count) {
     const numbers = [];
     while (numbers.length < count) {
