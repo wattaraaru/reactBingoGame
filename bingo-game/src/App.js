@@ -22,16 +22,52 @@ function App() {
   ]);
   const [columnG, setColumnG] = useState(generateRandomNumbers(61, 75, 5));
   const [columnO, setColumnO] = useState(generateRandomNumbers(76, 90, 5));
+  const [bingoCard, setBingoCard] = useState([
+    columnB,
+    columnI,
+    columnN,
+    columnG,
+    columnO,
+  ]);
+  const [bingoBall, setBingoBall] = useState(0);//ビンゴボールの管理
+  const [calledNumbers, setCalledNumbers] = useState([]);
+  const [countReach, setCountReach] = useState(0);
+  const [countBingo, setCountBingo] = useState(0);
 
-  const bingoCard = [columnB, columnI, columnN, columnG, columnO];
+  // リーチのチェック
+const isReach = () => {
+
+}
+
+// ビンゴのチェック
+const isBingo = () => {
+
+}
+  function handleBingoBall() {
+    const newBall = Math.floor(Math.random() * 90) + 1;
+    console.log(newBall);
+    setBingoBall(newBall);
+    setCalledNumbers(prev => [...prev, newBall]);
+    // 出たボールに一致するカードの場所に印をつける
+    setBingoCard(prev =>
+      prev.map(column =>
+        column.map(cell =>
+          cell === newBall ? "X"+cell : cell
+        )
+      )
+    );
+    isReach();
+    isBingo();
+  }
+
 
   return (
     <div>
       {/* 開始ボタン表示と終了モーダル */}
 
       {/* ビンゴボールを取り出すボタンとその表示 */}
-      <button>ガラガラを回す</button>
-      <p>出たボールの数値：</p>
+      <button onClick={handleBingoBall}>ガラガラを回す</button>
+      <p>出たボールの数値：{bingoBall}</p>
       {/* ビンゴカードの表示 */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)" }}>
       {bingoCard.map((column, i) => (
@@ -41,13 +77,16 @@ function App() {
           ))}
         </div>
       ))}
-    </div>
+      </div>
       {/* カードの中身 */}
 
       {/* 引いた番号の表示 */}
 
       {/* リーチとビンゴの数 */}
-
+      <div>
+        <p>リーチの数：{countReach}</p>
+        <p>ビンゴの数：{countBingo}</p>
+      </div>
       {/* 今まで出たボールの一覧表示 */}
     </div>
   );
